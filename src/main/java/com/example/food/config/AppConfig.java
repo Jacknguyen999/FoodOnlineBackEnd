@@ -44,7 +44,7 @@ public class AppConfig {
 
                 CorsConfiguration cfg = new CorsConfiguration();
                 cfg.setAllowedOrigins(Arrays.asList(
-//                        import vercel app
+//                        import vercel apps
                         "https://foodonline-plum.vercel.app/",
                         "http://localhost:3000"
                 ));
