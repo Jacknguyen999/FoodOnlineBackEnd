@@ -45,7 +45,7 @@ public class AppConfig {
                 CorsConfiguration cfg = new CorsConfiguration();
                 cfg.setAllowedOrigins(Arrays.asList(
 //                        import vercel app
-                        "https://food-online-fe.vercel.app",
+                        "https://foodonline-plum.vercel.app/",
                         "http://localhost:3000"
                 ));
                 cfg.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
@@ -64,3 +64,8 @@ public class AppConfig {
 
 
 }
+
+// Spring localhost mysql
+/*spring.datasource.url=jdbc:mysql://localhost:3306/FoodOrdering?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=tienanh05*/
