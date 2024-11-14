@@ -45,7 +45,7 @@ public class AppConfig {
                 CorsConfiguration cfg = new CorsConfiguration();
                 cfg.setAllowedOrigins(Arrays.asList(
 //                        import vercel apps
-                        "https://vercel.com/jacknguyen999s-projects/food-online-front-end/CShDTNdK4RvRVNMW4WvBezntJM6p",
+                        "https://vercel.com/jacknguyen999s-projects/food-online-front-end/HDsB3kHCKNi8Bov8dYRZbiUfXsaD",
                         "http://localhost:3000"
                 ));
                 cfg.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
