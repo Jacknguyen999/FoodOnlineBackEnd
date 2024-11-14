@@ -46,7 +46,7 @@ public class AppConfig {
                 cfg.setAllowedOrigins(Arrays.asList(
 //                        import vercel apps
                         "https://vercel.com/jacknguyen999s-projects/food-online-front-end/78j66kaEZmPLGHQRFkUndHR4tMh7",
-                        "https://food-online-front-end.vercel.app/",
+                        "https://food-online-front-end-jacknguyen999s-projects.vercel.app/",
                         "https://food-online-front-end-git-main-jacknguyen999s-projects.vercel.app/",
                         "https://food-online-front-gd7m91s1u-jacknguyen999s-projects.vercel.app/",
                         "http://localhost:3000"
