@@ -46,6 +46,9 @@ public class AppConfig {
                 cfg.setAllowedOrigins(Arrays.asList(
 //                        import vercel apps
                         "https://vercel.com/jacknguyen999s-projects/food-online-front-end/HDsB3kHCKNi8Bov8dYRZbiUfXsaD",
+                        "https://food-online-front-end.vercel.app/",
+                        "https://food-online-front-end-git-main-jacknguyen999s-projects.vercel.app/",
+                        "https://food-online-front-n3j7p4qdr-jacknguyen999s-projects.vercel.app/",
                         "http://localhost:3000"
                 ));
                 cfg.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
