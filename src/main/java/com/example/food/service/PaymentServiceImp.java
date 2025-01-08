@@ -27,8 +27,10 @@ public class PaymentServiceImp implements  PaymentService{
                 SessionCreateParams.
                         PaymentMethodType.CARD)
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl("http://food-online-front-end-git-main-jacknguyen999s-projects.vercel.app/payment/success/" + order.getId())
-                .setCancelUrl("http://food-online-front-end-git-main-jacknguyen999s-projects.vercel.app/payment/failed")
+               /* .setSuccessUrl("http://food-online-front-end-git-main-jacknguyen999s-projects.vercel.app/payment/success/" + order.getId())
+                .setCancelUrl("http://food-online-front-end-git-main-jacknguyen999s-projects.vercel.app/payment/failed")*/
+                .setSuccessUrl("http://localhost:3000/payment/success/" + order.getId())
+                .setCancelUrl("http://localhost:3000/payment/failed")
                 .addLineItem(SessionCreateParams.LineItem.builder().setQuantity(1L).setPriceData(SessionCreateParams.LineItem.PriceData.builder()
                         .setCurrency("VND")
                         .setUnitAmount(order.getTotalPrice() + 40000 + 4000)
