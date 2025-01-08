@@ -38,13 +38,10 @@ public class RestaurantController {
     }
     @GetMapping()
     public ResponseEntity<List<Restaurent>> getAllRestaurent(
-            @RequestHeader("Authorization") String jwt
+            /*@RequestHeader("Authorization") String jwt*/
             ) throws Exception {
-
-        User user = userService.findUserByJwtToken(jwt);
-
+        /*User user = userService.findUserByJwtToken(jwt);*/
         List<Restaurent> restaurent = restaurantService.getAllRestaurants();
-
         return new ResponseEntity<>(restaurent, HttpStatus.OK);
     }
     @GetMapping("/{id}")

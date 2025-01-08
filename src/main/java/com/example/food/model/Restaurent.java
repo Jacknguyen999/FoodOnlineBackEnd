@@ -38,7 +38,7 @@ public class Restaurent {
     private ContactInformation contactInformation;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "restaurent",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurent",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
     @ElementCollection
@@ -52,7 +52,7 @@ public class Restaurent {
     private String OpeningHour;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "restaurent",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurent",cascade = CascadeType.REMOVE,orphanRemoval = true)
     private List<Food> foods = new ArrayList<>();
 
 

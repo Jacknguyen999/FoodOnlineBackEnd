@@ -1,12 +1,8 @@
 package com.example.food.service;
 
 import com.example.food.DTO.RestaurentDTO;
-import com.example.food.model.Address;
-import com.example.food.model.Restaurent;
-import com.example.food.model.User;
-import com.example.food.repository.AddressRepository;
-import com.example.food.repository.RestaurantRepository;
-import com.example.food.repository.UserRepository;
+import com.example.food.model.*;
+import com.example.food.repository.*;
 import com.example.food.request.CreateRestaurantRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +24,15 @@ public class RestaurentServiceImp implements RestaurantService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private FoodRepository foodRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private IngredientItemRepository ingredientItemRepository;
 
 
     @Override
@@ -85,6 +90,14 @@ public class RestaurentServiceImp implements RestaurantService {
             throw new Exception("Restaurent not found id " + restaurentId);
         }
         try{
+            /*// Delete related IngredientItems
+            ingredientItemRepository.deleteIngredientsByRestaurantId(restaurentId);
+
+            // Delete related Foods and Orders (if needed)
+            foodRepository.deleteFoodsByRestaurantId(restaurentId);
+            orderRepository.deleteOrdersByRestaurantId(restaurentId);*/
+
+            // Delete the Restaurent itself
             restaurantRepository.delete(restaurent);
         }
         catch (DataIntegrityViolationException e) {

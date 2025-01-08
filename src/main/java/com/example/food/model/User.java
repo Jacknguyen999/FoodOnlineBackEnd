@@ -8,11 +8,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -34,9 +30,11 @@ public class User {
     private USER_ROLE role= USER_ROLE.ROLE_CUSTOMER ;
 
 
+
+
     @JsonIgnore
     @JsonManagedReference
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "customer")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
 
@@ -47,9 +45,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    /*public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.role.name()));
-    }
+    }*/
 
 
 }
