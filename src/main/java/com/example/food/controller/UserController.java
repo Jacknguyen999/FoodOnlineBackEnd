@@ -33,15 +33,9 @@ public class UserController {
     }
 
 
-    /*@PutMapping("/change_role")
-    public ResponseEntity<User> changeRole(@RequestHeader("Authorization") String jwt) throws Exception {
-        User user = userService.findUserByJwtToken(jwt);
-        user.setRole(USER_ROLE.ROLE_RESTAURANT_OWNER);
-        User savedUser = userRepository.save(user);
-        return new  ResponseEntity<>(savedUser,HttpStatus.OK);
-    }*/
 
-    @PutMapping("/change_role")
+
+  /*  @PutMapping("/change_role")
     public ResponseEntity<AuthResponse> changeRole(@RequestHeader("Authorization") String jwt) throws Exception {
         User user = userService.findUserByJwtToken(jwt);
         user.setRole(USER_ROLE.ROLE_RESTAURANT_OWNER);
@@ -57,7 +51,7 @@ public class UserController {
         authResponse.setRole(savedUser.getRole());
 
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
-    }
+    }*/
 
 
     @GetMapping("/profile")
