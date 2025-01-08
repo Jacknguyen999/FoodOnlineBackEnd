@@ -43,49 +43,98 @@ public class OrderServiceImp implements  OrderService {
 
 
 
-    @Override
-    public Order createOrder(CreateOrderRequest order, User user) throws Exception {
-        Address shippingAddress = order.getDeliveryAddress();
-        Address savedAddress = addressRepository.save(shippingAddress);
-        if(!user.getAddresses().contains(savedAddress)) {
-            user.getAddresses().add(savedAddress);
-            userRepository.save(user);
-        }
-        Restaurent restaurant = restaurantService.findRestaurantById(order.getRestaurantId());
+//    @Override
+//    public Order createOrder(CreateOrderRequest order, User user) throws Exception {
+//        Address shippingAddress = order.getDeliveryAddress();
+//        Address savedAddress = addressRepository.save(shippingAddress);
+//        if(!user.getAddresses().contains(savedAddress)) {
+//            user.getAddresses().add(savedAddress);
+//            userRepository.save(user);
+//        }
+//        Restaurent restaurant = restaurantService.findRestaurantById(order.getRestaurantId());
+//
+//        Order createdOrder = new Order();
+//        createdOrder.setCustomer(user);
+//        createdOrder.setCreatedAt(new Date());
+//        createdOrder.setOrderStatus("Pending");
+//        createdOrder.setDeliveryAddress(savedAddress);
+//        createdOrder.setRestaurent(restaurant);
+//
+//
+//        Cart cart = cartService.findCartByUserId(user.getId());
+//
+//        List<OrderItem> orderItems = new ArrayList<>();
+//
+//        for(CartItem cartItem : cart.getItem()){
+//            OrderItem orderItem = new OrderItem();
+//            orderItem.setQuantity(cartItem.getQuantity());
+//            orderItem.setFood(cartItem.getFood());
+//            orderItem.setTotalPrice(cartItem.getTotalprice());
+//            createdOrder.setTotalItem(orderItem.getQuantity());
+//
+//            OrderItem savedOrderItem = orderItemRepository.save(orderItem);
+//            orderItems.add(savedOrderItem);
+//        }
+//        Long totalPrice  = cartService.calculateCartTotals(cart);
+//            createdOrder.setItems(orderItems);
+//            createdOrder.setTotalPrice(totalPrice);
+//            Order savedOrder = orderRepository.save(createdOrder);
+//            restaurant.getOrders().add(savedOrder);
+//
+//        return savedOrder;
+//    }
+@Override
+public Order createOrder(CreateOrderRequest order, User user) throws Exception {
+    Address shippingAddress = order.getDeliveryAddress();
 
-        Order createdOrder = new Order();
-        createdOrder.setCustomer(user);
-        createdOrder.setCreatedAt(new Date());
-        createdOrder.setOrderStatus("Pending");
-        createdOrder.setDeliveryAddress(savedAddress);
-        createdOrder.setRestaurent(restaurant);
+    // Check if the user's addresses already contain the shipping address
+    boolean addressExists = user.getAddresses().stream()
+            .anyMatch(address -> address.equals(shippingAddress));
 
-
-        Cart cart = cartService.findCartByUserId(user.getId());
-
-        List<OrderItem> orderItems = new ArrayList<>();
-
-        for(CartItem cartItem : cart.getItem()){
-            OrderItem orderItem = new OrderItem();
-            orderItem.setQuantity(cartItem.getQuantity());
-            orderItem.setFood(cartItem.getFood());
-            orderItem.setTotalPrice(cartItem.getTotalprice());
-            createdOrder.setTotalItem(orderItem.getQuantity());
-
-            OrderItem savedOrderItem = orderItemRepository.save(orderItem);
-            orderItems.add(savedOrderItem);
-        }
-        Long totalPrice  = cartService.calculateCartTotals(cart);
-            createdOrder.setItems(orderItems);
-            createdOrder.setTotalPrice(totalPrice);
-
-
-
-            Order savedOrder = orderRepository.save(createdOrder);
-            restaurant.getOrders().add(savedOrder);
-
-        return savedOrder;
+    Address finalShippingAddress;
+    if (!addressExists) {
+        finalShippingAddress = addressRepository.save(shippingAddress);
+        user.getAddresses().add(finalShippingAddress);
+        userRepository.save(user);
+    } else {
+        finalShippingAddress = user.getAddresses().stream()
+                .filter(address -> address.equals(shippingAddress))
+                .findFirst()
+                .orElse(shippingAddress);
     }
+
+    Restaurent restaurant = restaurantService.findRestaurantById(order.getRestaurantId());
+
+    Order createdOrder = new Order();
+    createdOrder.setCustomer(user);
+    createdOrder.setCreatedAt(new Date());
+    createdOrder.setOrderStatus("Pending");
+    createdOrder.setDeliveryAddress(finalShippingAddress);
+    createdOrder.setRestaurent(restaurant);
+
+    Cart cart = cartService.findCartByUserId(user.getId());
+
+    List<OrderItem> orderItems = new ArrayList<>();
+
+    for (CartItem cartItem : cart.getItem()) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setQuantity(cartItem.getQuantity());
+        orderItem.setFood(cartItem.getFood());
+        orderItem.setTotalPrice(cartItem.getTotalprice());
+        createdOrder.setTotalItem(orderItem.getQuantity());
+
+        OrderItem savedOrderItem = orderItemRepository.save(orderItem);
+        orderItems.add(savedOrderItem);
+    }
+
+    Long totalPrice = cartService.calculateCartTotals(cart);
+    createdOrder.setItems(orderItems);
+    createdOrder.setTotalPrice(totalPrice);
+    Order savedOrder = orderRepository.save(createdOrder);
+    restaurant.getOrders().add(savedOrder);
+
+    return savedOrder;
+}
 
     @Override
     public Order updateOrder(Long orderId, String orderStatus) throws Exception {
