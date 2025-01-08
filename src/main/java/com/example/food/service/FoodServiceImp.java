@@ -122,4 +122,9 @@ public class FoodServiceImp implements FoodService {
         food.setAvailable(!food.isAvailable());
         return foodRepository.save(food);
     }
+
+    @Override
+    public List<Food> getALlFood() {
+        return foodRepository.findAll();
+    }
 }

@@ -23,6 +23,8 @@ public interface FoodService {
 
      Food updateAvailibilityStatus(Long foodId) throws Exception;
 
+     List<Food> getALlFood();
+
 
 
 

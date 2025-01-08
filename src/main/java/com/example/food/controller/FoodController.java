@@ -26,8 +26,6 @@ public class FoodController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private RestaurantService restaurantService;
 
     @GetMapping("/search")
     public ResponseEntity<List<Food>> searchFood(
@@ -39,6 +37,12 @@ public class FoodController {
 
         return new ResponseEntity<>(food, HttpStatus.OK);
 
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Food>> getAllFood() throws Exception {
+        List<Food> food = foodService.getALlFood();
+        return new ResponseEntity<>(food,HttpStatus.OK);
     }
     @GetMapping("/restaurant/{restaurantId}")
     public ResponseEntity<List<Food>> getRestaurantFood(

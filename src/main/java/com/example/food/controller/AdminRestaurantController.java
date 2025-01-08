@@ -1,6 +1,8 @@
 package com.example.food.controller;
 
 
+import com.corundumstudio.socketio.SocketIOServer;
+import com.example.food.config.SocketIOConfig;
 import com.example.food.model.Restaurent;
 import com.example.food.model.User;
 import com.example.food.request.CreateRestaurantRequest;
@@ -22,6 +24,10 @@ public class AdminRestaurantController {
 
     @Autowired
     private UserService userService;
+
+
+    @Autowired
+    private SocketIOServer socket;
 
 
     @PostMapping()
@@ -69,6 +75,8 @@ public class AdminRestaurantController {
 
         User user = userService.findUserByJwtToken(jwt);
        Restaurent restaurent= restaurantService.updateRestaurentStatus(id);
+//       socket.getBroadcastOperations().sendEvent("restaurantStatusUpdated", restaurent);
+
 
 
         return new ResponseEntity<>(restaurent, HttpStatus.OK);

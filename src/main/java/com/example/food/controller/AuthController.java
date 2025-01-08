@@ -19,6 +19,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -63,7 +64,8 @@ public class AuthController {
         cart.setCustomer(savedUser);
         cartRepository.save(cart);
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+        Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(savedUser.getRole().toString());
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword(),authorities);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtProvider.generateToken(authentication);
@@ -92,7 +94,6 @@ public class AuthController {
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(jwt);
         authResponse.setMessage("Login SUCCESSFULLY");
-
         authResponse.setRole(USER_ROLE.valueOf(role));
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
 

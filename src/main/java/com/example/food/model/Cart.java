@@ -23,7 +23,7 @@ public class Cart {
 
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     private User customer;
 
     private Long total;
