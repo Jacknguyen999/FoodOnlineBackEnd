@@ -104,9 +104,16 @@ src/
 
 ### Endpoints
 
+#### Restaurant 
+
+![image](https://github.com/user-attachments/assets/fb9e1cf4-97f2-4240-a351-fd7d187fc30f)
+
+
 #### User Authentication
 - `POST /api/auth/register` - Register a new user
 - `POST /api/auth/login` - Log in a user
+- ![image](https://github.com/user-attachments/assets/10f318a3-31cc-4162-872b-ef69847dcb1d)
+
 
 #### Food Items
 - `GET /api/foods` - Get all food items
