@@ -18,7 +18,6 @@ import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.util.List;
 
-import static org.yaml.snakeyaml.tokens.Token.ID.Key;
 
 public class JwtTokenValidator extends OncePerRequestFilter {
 

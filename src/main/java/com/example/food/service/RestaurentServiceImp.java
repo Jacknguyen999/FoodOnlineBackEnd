@@ -25,14 +25,7 @@ public class RestaurentServiceImp implements RestaurantService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private FoodRepository foodRepository;
 
-    @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private IngredientItemRepository ingredientItemRepository;
 
 
     @Override

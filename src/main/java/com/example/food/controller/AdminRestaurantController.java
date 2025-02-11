@@ -1,8 +1,7 @@
 package com.example.food.controller;
 
 
-import com.corundumstudio.socketio.SocketIOServer;
-import com.example.food.config.SocketIOConfig;
+
 import com.example.food.model.Restaurent;
 import com.example.food.model.User;
 import com.example.food.request.CreateRestaurantRequest;
@@ -26,8 +25,7 @@ public class AdminRestaurantController {
     private UserService userService;
 
 
-    @Autowired
-    private SocketIOServer socket;
+
 
 
     @PostMapping()

@@ -34,7 +34,7 @@ public class User {
 
     @JsonIgnore
     @JsonManagedReference
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval = true)
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
 
 

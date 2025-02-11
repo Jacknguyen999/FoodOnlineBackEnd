@@ -122,8 +122,9 @@ public Order createOrder(CreateOrderRequest order, User user) throws Exception {
         orderItem.setFood(cartItem.getFood());
         orderItem.setTotalPrice(cartItem.getTotalprice());
         createdOrder.setTotalItem(orderItem.getQuantity());
-
         OrderItem savedOrderItem = orderItemRepository.save(orderItem);
+//        orderItem.setOrder(createdOrder);
+//        orderItems.add(savedOrderItem);
         orderItems.add(savedOrderItem);
     }
 
@@ -131,6 +132,8 @@ public Order createOrder(CreateOrderRequest order, User user) throws Exception {
     createdOrder.setItems(orderItems);
     createdOrder.setTotalPrice(totalPrice);
     Order savedOrder = orderRepository.save(createdOrder);
+
+
     restaurant.getOrders().add(savedOrder);
 
     return savedOrder;
