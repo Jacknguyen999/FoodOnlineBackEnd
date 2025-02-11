@@ -1,17 +1,15 @@
 package com.example.food.controller;
 
 import com.example.food.config.JwtProvider;
-import com.example.food.model.USER_ROLE;
 import com.example.food.model.User;
 import com.example.food.repository.UserRepository;
-import com.example.food.response.AuthResponse;
 import com.example.food.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.Authentication;
+
 
 @RestController
 @RequestMapping("/api/users")
