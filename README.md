@@ -99,6 +99,9 @@ src/
 
 `http://localhost:8080/api`
 
+### Swagger UI 
+`http://localhost:8080/swagger-ui/index.html`
+
 ### Endpoints
 
 #### User Authentication
